@@ -16,7 +16,7 @@ public class SaeDto {
 
     private String sujet;
 
-    private Long responsable_id;
+    private Long responsableId;
 
-    private Long semestre_id;
+    private Long semestreId;
 }

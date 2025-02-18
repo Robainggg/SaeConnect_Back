@@ -13,9 +13,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByAlias(String alias);
 
-    @Query("SELECT DISTINCT u FROM User u WHERE u.role_id = 1")
+    @Query("SELECT DISTINCT u FROM User u WHERE u.roleId = 1")
     List<User> findEtudiants();
 
-    @Query("SELECT DISTINCT u FROM User u WHERE u.role_id = 2")
+    @Query("SELECT DISTINCT u FROM User u WHERE u.roleId = 2")
     List<User> findResponsables();
 }

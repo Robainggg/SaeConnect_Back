@@ -1,9 +1,12 @@
 package iut.sae.saeconnectback.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -24,7 +27,11 @@ public class User {
     @JsonIgnore
     private String password;
 
-    private Long role_id;
+    private Long roleId;
+
+    @OneToMany(mappedBy = "etudiant", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<GroupStudentDto> groupStudents;
 
     @Override
     public String toString() {
@@ -34,7 +41,7 @@ public class User {
                 ", lastname='" + lastname + '\'' +
                 ", alias='" + alias + '\'' +
                 ", password='" + password + '\'' +
-                ", role_id=" + role_id +
+                ", role_id=" + roleId +
                 '}';
     }
 

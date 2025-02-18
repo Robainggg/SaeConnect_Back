@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Embeddable
 public class CoResponsibleId implements Serializable {
 
-    public Long sae_id;
+    public Long saeId;
 
-    public Long responsable_id;
+    public Long responsableId;
 }
