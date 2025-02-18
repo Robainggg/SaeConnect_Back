@@ -5,9 +5,7 @@ import iut.sae.saeconnectback.dtos.SaeDto;
 import iut.sae.saeconnectback.services.SaeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -23,4 +21,13 @@ public class SaeController {
         return ResponseEntity.ok(this.saeService.getAllSaes());
     }
 
+    @PostMapping
+    public ResponseEntity<?> save(@RequestBody final SaeDto saeDto){
+        try {
+            this.saeService.save(saeDto);
+            return ResponseEntity.ok().body(saeDto);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

@@ -15,4 +15,8 @@ public class SaeService {
     public List<SaeDto> getAllSaes() {
         return saeRepository.findAll();
     }
+
+    public void save(SaeDto sae) {
+        saeRepository.save(sae);
+    }
 }
