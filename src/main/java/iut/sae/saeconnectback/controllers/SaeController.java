@@ -24,6 +24,7 @@ public class SaeController {
     @PostMapping
     public ResponseEntity<?> save(@RequestBody final SaeDto saeDto){
         try {
+            System.out.println(saeDto.toString());
             this.saeService.save(saeDto);
             return ResponseEntity.ok().body(saeDto);
         }catch (Exception e){
