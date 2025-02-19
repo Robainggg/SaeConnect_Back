@@ -26,9 +26,6 @@ public class GroupStudentDto {
     @JsonBackReference("etudiant-reference")
     private User etudiant;
 
-    @JsonProperty("etudiant_id") // Sérialise uniquement l'id de l'étudiant
-    public Long getStudentId() {
-        return this.etudiant != null ? this.etudiant.getId() : null;
-    }
+
 
 }
