@@ -1,7 +1,8 @@
 package iut.sae.saeconnectback.controllers;
 
-import iut.sae.saeconnectback.dtos.GroupDto;
+import iut.sae.saeconnectback.dtos.GroupDTO;
 import iut.sae.saeconnectback.services.GroupService;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +19,14 @@ public class GroupController {
 
 
     @GetMapping
+    @Transactional
     public ResponseEntity<?> getAllGroups() {
-        List<GroupDto> groups = this.groupService.getAllGroups();
+        List<GroupDTO> groups = this.groupService.getAllGroups();
         return ResponseEntity.ok().body(groups);
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody final GroupDto groupDto) {
+    public ResponseEntity<?> save(@RequestBody final GroupDTO groupDto) {
         try {
             System.out.println(groupDto);
             this.groupService.save(groupDto);

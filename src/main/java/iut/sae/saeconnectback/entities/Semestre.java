@@ -1,4 +1,4 @@
-package iut.sae.saeconnectback.dtos;
+package iut.sae.saeconnectback.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;

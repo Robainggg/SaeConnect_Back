@@ -1,7 +1,6 @@
-package iut.sae.saeconnectback.dtos;
+package iut.sae.saeconnectback.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import iut.sae.saeconnectback.dtos.GroupDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,14 +23,16 @@ public class User {
 
     private String alias;
 
-    @JsonIgnore
     private String password;
 
     private Long roleId;
 
-    @OneToMany(mappedBy = "etudiant", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<GroupStudentDto> groupStudents;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "groupes_etudiants"
+            , joinColumns = @JoinColumn(name = "etudiant_id")
+            , inverseJoinColumns = @JoinColumn(name = "groupe_id"))
+    private List<Group> groups;
+
 
     @Override
     public String toString() {

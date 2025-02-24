@@ -1,6 +1,6 @@
 package iut.sae.saeconnectback.services;
 
-import iut.sae.saeconnectback.dtos.Semestre;
+import iut.sae.saeconnectback.entities.Semestre;
 import iut.sae.saeconnectback.repositories.SemestreRepository;
 import org.springframework.stereotype.Service;
 

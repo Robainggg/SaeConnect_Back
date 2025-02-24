@@ -1,6 +1,6 @@
 package iut.sae.saeconnectback.controllers;
 
-import iut.sae.saeconnectback.dtos.User;
+import iut.sae.saeconnectback.entities.User;
 import iut.sae.saeconnectback.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

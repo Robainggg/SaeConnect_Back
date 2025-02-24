@@ -1,6 +1,6 @@
 package iut.sae.saeconnectback.services;
 
-import iut.sae.saeconnectback.dtos.User;
+import iut.sae.saeconnectback.entities.User;
 import iut.sae.saeconnectback.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 

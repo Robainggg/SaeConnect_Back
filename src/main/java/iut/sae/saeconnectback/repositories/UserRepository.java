@@ -1,6 +1,6 @@
 package iut.sae.saeconnectback.repositories;
 
-import iut.sae.saeconnectback.dtos.User;
+import iut.sae.saeconnectback.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
