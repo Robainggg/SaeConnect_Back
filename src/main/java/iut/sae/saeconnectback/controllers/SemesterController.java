@@ -1,7 +1,7 @@
 package iut.sae.saeconnectback.controllers;
 
-import iut.sae.saeconnectback.entities.Semestre;
-import iut.sae.saeconnectback.services.SemestreService;
+import iut.sae.saeconnectback.dtos.SemesterDTO;
+import iut.sae.saeconnectback.services.SemesterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,18 +12,18 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/semestres")
-public class SemestreController {
+@RequestMapping("/semesters")
+public class SemesterController {
 
-    private final SemestreService semestreService;
+    private final SemesterService semesterService;
 
-    public SemestreController(final SemestreService semestreService) {
-        this.semestreService = semestreService;
+    public SemesterController(final SemesterService semesterService) {
+        this.semesterService = semesterService;
     }
 
     @GetMapping()
     public ResponseEntity<?> semestres(){
-        List<Semestre> semestres = semestreService.getAllSemestres();
+        List<SemesterDTO> semestres = semesterService.getAllSemestres();
         return ResponseEntity.ok(semestres);
     }
 }

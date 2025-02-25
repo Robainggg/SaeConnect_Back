@@ -1,7 +1,7 @@
 package iut.sae.saeconnectback.controllers;
 
 
-import iut.sae.saeconnectback.dtos.SaeDto;
+import iut.sae.saeconnectback.dtos.SaeDTO;
 import iut.sae.saeconnectback.services.SaeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +22,7 @@ public class SaeController {
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody final SaeDto saeDto){
+    public ResponseEntity<?> save(@RequestBody final SaeDTO saeDto){
         try {
             System.out.println(saeDto.toString());
             this.saeService.save(saeDto);

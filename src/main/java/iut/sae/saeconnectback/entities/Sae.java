@@ -1,4 +1,5 @@
-package iut.sae.saeconnectback.dtos;
+package iut.sae.saeconnectback.entities;
+
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "saes")
 @AllArgsConstructor
 @NoArgsConstructor
-public class SaeDto {
+public class Sae {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,14 +28,4 @@ public class SaeDto {
     @JsonProperty(value = "semestre_id")
     private Long semestreId;
 
-    @Override
-    public String toString() {
-        return "SaeDto{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", sujet='" + sujet + '\'' +
-                ", responsableId=" + responsableId +
-                ", semestreId=" + semestreId +
-                '}';
-    }
 }

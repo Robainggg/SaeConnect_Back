@@ -1,6 +1,6 @@
 package iut.sae.saeconnectback.entities;
 
-import iut.sae.saeconnectback.dtos.GroupDTO;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +25,7 @@ public class User {
 
     private String password;
 
+    @Column(name = "role_id")
     private Long roleId;
 
     @ManyToMany(fetch = FetchType.LAZY)

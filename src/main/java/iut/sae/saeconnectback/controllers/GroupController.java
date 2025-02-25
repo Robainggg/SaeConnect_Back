@@ -11,7 +11,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/groupes")
+@RequestMapping("/groups")
 public class GroupController {
     private final GroupService groupService;
 

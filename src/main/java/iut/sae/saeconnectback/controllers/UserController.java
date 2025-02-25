@@ -1,5 +1,6 @@
 package iut.sae.saeconnectback.controllers;
 
+import iut.sae.saeconnectback.dtos.UserDTO;
 import iut.sae.saeconnectback.entities.User;
 import iut.sae.saeconnectback.services.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +30,7 @@ public UserController(UserService userService){this.userService = userService;}
 
     @GetMapping
     public ResponseEntity<?> allUsers(){
-        List<User> users = userService.getAllUsers();
+        List<UserDTO> users = userService.getAllUsers();
 
         System.out.println(users.toString());
         return ResponseEntity.ok(users);

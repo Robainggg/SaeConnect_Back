@@ -1,8 +1,6 @@
 package iut.sae.saeconnectback.entities;
 
-import iut.sae.saeconnectback.dtos.GroupDTO;
-import iut.sae.saeconnectback.dtos.UserDTO;
-import iut.sae.saeconnectback.entities.User;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -27,7 +25,7 @@ public class Group {
 
     @Override
     public String toString() {
-        return "GroupDto{" +
+        return "Group{" +
                 "id=" + id +
                 ", nom='" + nom + '\'' +
                 '}';
