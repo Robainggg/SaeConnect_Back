@@ -29,8 +29,8 @@ public class User {
     private Long roleId;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "groupes_etudiants"
-            , joinColumns = @JoinColumn(name = "etudiant_id")
+    @JoinTable(name = "groupes_users"
+            , joinColumns = @JoinColumn(name = "user_id")
             , inverseJoinColumns = @JoinColumn(name = "groupe_id"))
     private List<Group> groups;
 

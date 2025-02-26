@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS sae_etudiants;
 DROP TABLE IF EXISTS co_responsables;
 DROP TABLE IF EXISTS saes;
 DROP TABLE IF EXISTS semestres;
-DROP TABLE IF EXISTS groupes_etudiants;
+DROP TABLE IF EXISTS groupes_users;
 DROP TABLE IF EXISTS groupes;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS roles;
@@ -58,12 +58,12 @@ CREATE TABLE groupes (
     nom VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE groupes_etudiants (
+CREATE TABLE groupes_users (
     groupe_id INTEGER NOT NULL,
-    etudiant_id INTEGER NOT NULL,
-    PRIMARY KEY (groupe_id, etudiant_id),
+    user_id INTEGER NOT NULL,
+    PRIMARY KEY (groupe_id, user_id),
     FOREIGN KEY (groupe_id) REFERENCES groupes(id) ON DELETE CASCADE,
-    FOREIGN KEY (etudiant_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 INSERT INTO roles (role) VALUES ('Etudiant'), ('Responsable');
@@ -92,5 +92,5 @@ INSERT INTO saes (nom, sujet, responsable_id, semestre_id) VALUES
 
 INSERT INTO groupes (nom) VALUES ('Groupe A'), ('Groupe B'), ('Groupe C');
 
-INSERT INTO groupes_etudiants (groupe_id, etudiant_id) VALUES 
+INSERT INTO groupes_users (groupe_id, user_id) VALUES
     (1, 1), (1, 2), (1, 3), (2, 4), (2, 5), (2, 6), (3, 7), (3, 8), (3, 9);

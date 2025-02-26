@@ -9,6 +9,7 @@ import iut.sae.saeconnectback.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GroupService {
@@ -29,6 +30,18 @@ public class GroupService {
         List<User> users = userRepository.findAllById(groupDTO.getIdUsers());
         Group group = GroupMapper.toEntity(groupDTO, users);
         groupRepository.save(group);
+    }
+
+    public void addUsersToGroup(Long groupId, List<Long> userIds) {
+        List<User> users = userRepository.findAllById(userIds);
+        Optional<Group> groupAnswer = groupRepository.findById(groupId);
+        if(groupAnswer.isPresent()) {
+            for(User u : users) {
+                groupAnswer.get().getUsers().add(u);
+            }
+            groupRepository.save(groupAnswer.get());
+        }
+
     }
 
 

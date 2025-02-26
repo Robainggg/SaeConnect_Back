@@ -35,4 +35,14 @@ public class GroupController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PostMapping("/{groupId}/users")
+    public ResponseEntity<?> addUsersToGroup(@PathVariable final Long groupId, @RequestBody final List<Long> userIds) {
+        try{
+            this.groupService.addUsersToGroup(groupId, userIds);
+            return ResponseEntity.ok().build();
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

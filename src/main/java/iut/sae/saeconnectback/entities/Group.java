@@ -18,9 +18,9 @@ public class Group {
     private String nom;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "groupes_etudiants"
+    @JoinTable(name = "groupes_users"
             , joinColumns = @JoinColumn(name = "groupe_id")
-            , inverseJoinColumns = @JoinColumn(name = "etudiant_id"))
+            , inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> users;
 
     @Override
@@ -30,6 +30,11 @@ public class Group {
                 ", nom='" + nom + '\'' +
                 '}';
     }
+
+    public void addUser(User user) {
+        users.add(user);
+    }
+
 }
 
 
