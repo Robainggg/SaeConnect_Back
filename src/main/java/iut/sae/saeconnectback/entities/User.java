@@ -14,19 +14,21 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String firstname;
 
     private String lastname;
 
+    @Column(insertable = false, updatable = false)
     private String alias;
 
     private String password;
 
-    @Column(name = "role_id")
-    private Long roleId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "groupes_users"
@@ -43,7 +45,7 @@ public class User {
                 ", lastname='" + lastname + '\'' +
                 ", alias='" + alias + '\'' +
                 ", password='" + password + '\'' +
-                ", role_id=" + roleId +
+                ", role=" + role +
                 '}';
     }
 

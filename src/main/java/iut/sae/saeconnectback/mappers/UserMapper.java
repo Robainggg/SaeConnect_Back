@@ -1,12 +1,17 @@
 package iut.sae.saeconnectback.mappers;
 
+import iut.sae.saeconnectback.dtos.AuthLoginRequestDTO;
+import iut.sae.saeconnectback.dtos.AuthRegisterRequestDTO;
 import iut.sae.saeconnectback.dtos.UserDTO;
 import iut.sae.saeconnectback.entities.Group;
+import iut.sae.saeconnectback.entities.Role;
 import iut.sae.saeconnectback.entities.User;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class UserMapper {
     public static UserDTO toDto(User user){
         UserDTO userDTO = new UserDTO();
@@ -15,7 +20,7 @@ public class UserMapper {
         userDTO.setLastname(user.getLastname());
         userDTO.setAlias(user.getAlias());
         userDTO.setPassword(user.getPassword());
-        userDTO.setRoleId(user.getRoleId());
+        userDTO.setRole(user.getRole());
         if(user.getGroups() != null)
             userDTO.setGroupIds(user.getGroups().stream().map(Group::getId).collect(Collectors.toList()));
 
@@ -30,7 +35,23 @@ public class UserMapper {
         user.setAlias(userDTO.getAlias());
         user.setGroups(groups);
         user.setPassword(userDTO.getPassword());
-        user.setRoleId(userDTO.getRoleId());
+        user.setRole(userDTO.getRole());
+        return user;
+    }
+
+    public static User toEntity(AuthRegisterRequestDTO registerRequestDTO, Role role){
+        User user = new User();
+        user.setFirstname(registerRequestDTO.getFirstname());
+        user.setLastname(registerRequestDTO.getLastname());
+        user.setPassword(registerRequestDTO.getPassword());
+        user.setRole(role);
+        return user;
+    }
+
+    public static User toEntity(AuthLoginRequestDTO loginRequestDTO){
+        User user = new User();
+        user.setAlias(loginRequestDTO.getAlias());
+        user.setPassword(loginRequestDTO.getPassword());
         return user;
     }
 }

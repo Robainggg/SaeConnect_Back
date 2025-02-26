@@ -1,31 +1,23 @@
 package iut.sae.saeconnectback.dtos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import iut.sae.saeconnectback.entities.Role;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import java.util.List;
-
 @Data
-public class  UserDTO {
-    private Long id;
+public class AuthRegisterRequestDTO {
 
     @NotBlank
-    @Size(min = 1, max = 50)
+    @Size(min = 8)
     private String firstname;
 
     @NotBlank
-    @Size(min = 1, max = 50)
+    @Size(min = 8)
     private String lastname;
 
-    private String alias;
-
-    @JsonIgnore
     @NotBlank
     @Size(min = 8)
     @Pattern(
@@ -34,9 +26,7 @@ public class  UserDTO {
     )
     private String password;
 
-    @NotNull
-    private Role role;
-
-
-    private List<Long> groupIds;
+    @NotBlank
+    @JsonProperty(value = "role_id")
+    private Long roleId;
 }

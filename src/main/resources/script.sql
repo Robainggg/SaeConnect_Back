@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS roles;
 
 CREATE TABLE roles (
     id SERIAL PRIMARY KEY,
-    role VARCHAR(255) NOT NULL
+    nom VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE users (
@@ -66,7 +66,7 @@ CREATE TABLE groupes_users (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-INSERT INTO roles (role) VALUES ('Etudiant'), ('Responsable');
+INSERT INTO roles (nom) VALUES ('ETUDIANT'), ('RESPONSABLE'), ('ADMIN');
 
 INSERT INTO semestres (nom) VALUES 
     ('Semestre 1'), ('Semestre 2'), ('Semestre 3'), 
