@@ -1,8 +1,8 @@
 package iut.sae.saeconnectback.controllers;
 
 import iut.sae.saeconnectback.dtos.AuthLoginRequestDTO;
+import iut.sae.saeconnectback.dtos.AuthLoginResponseDTO;
 import iut.sae.saeconnectback.dtos.AuthRegisterRequestDTO;
-import iut.sae.saeconnectback.dtos.JwtResponse;
 import iut.sae.saeconnectback.entities.Role;
 import iut.sae.saeconnectback.entities.User;
 import iut.sae.saeconnectback.mappers.UserMapper;
@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,9 +56,10 @@ public class AuthController {
     public ResponseEntity<?> loginUser(@RequestBody AuthLoginRequestDTO userDto) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDto.getAlias(), userDto.getPassword()));
+            String token = JwtTokenUtil.generateToken(userDto.getAlias());
             User user = userRepository.findByAlias(userDto.getAlias()).orElse(null);
-            String token = JwtTokenUtil.generateToken(user);
-            return ResponseEntity.ok(new JwtResponse(token));
+            AuthLoginResponseDTO response = UserMapper.toDTO(user, token);
+            return ResponseEntity.ok(response);
         } catch(Exception ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Alias ou mot de passe invalide");

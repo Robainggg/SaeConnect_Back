@@ -1,6 +1,7 @@
 package iut.sae.saeconnectback.mappers;
 
 import iut.sae.saeconnectback.dtos.AuthLoginRequestDTO;
+import iut.sae.saeconnectback.dtos.AuthLoginResponseDTO;
 import iut.sae.saeconnectback.dtos.AuthRegisterRequestDTO;
 import iut.sae.saeconnectback.dtos.UserDTO;
 import iut.sae.saeconnectback.entities.Group;
@@ -53,5 +54,14 @@ public class UserMapper {
         user.setAlias(loginRequestDTO.getAlias());
         user.setPassword(loginRequestDTO.getPassword());
         return user;
+    }
+
+    public static AuthLoginResponseDTO toDTO(User user, String token){
+        AuthLoginResponseDTO authLoginResponseDTO = new AuthLoginResponseDTO();
+        authLoginResponseDTO.setToken(token);
+        authLoginResponseDTO.setRoleId(user.getRole().getId());
+        authLoginResponseDTO.setFirstname(user.getFirstname());
+        authLoginResponseDTO.setLastname(user.getLastname());
+        return authLoginResponseDTO;
     }
 }
