@@ -54,12 +54,14 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody AuthLoginRequestDTO user) {
+    public ResponseEntity<?> loginUser(@RequestBody AuthLoginRequestDTO userDto) {
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getAlias(), user.getPassword()));
-            String token = JwtTokenUtil.generateToken(user.getAlias());
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDto.getAlias(), userDto.getPassword()));
+            User user = userRepository.findByAlias(userDto.getAlias()).orElse(null);
+            String token = JwtTokenUtil.generateToken(user);
             return ResponseEntity.ok(new JwtResponse(token));
         } catch(Exception ex) {
+            ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Alias ou mot de passe invalide");
         }
     }
