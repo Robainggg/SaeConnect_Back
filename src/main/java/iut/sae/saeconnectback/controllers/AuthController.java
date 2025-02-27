@@ -60,7 +60,6 @@ public class AuthController {
             String token = JwtTokenUtil.generateToken(user.getAlias());
             return ResponseEntity.ok(new JwtResponse(token));
         } catch(Exception ex) {
-            ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Alias ou mot de passe invalide");
         }
     }
