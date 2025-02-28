@@ -14,6 +14,9 @@ public class JwtTokenUtil {
 
     private static String SECRET_KEY;
 
+    @Value("${jwt.expiration.time}")
+    private static int expirationToken;
+
     private static SecretKey KEY;
 
     @Value("${jwt.secret}")
@@ -27,7 +30,7 @@ public class JwtTokenUtil {
         return Jwts.builder()
                 .setSubject(alias)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 3600000))  // Token valable 1 heure
+                .setExpiration(new Date(System.currentTimeMillis() + expirationToken))  // Token valable 1 heure
                 .signWith(KEY, SignatureAlgorithm.HS256)
                 .compact();
     }

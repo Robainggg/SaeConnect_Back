@@ -8,12 +8,17 @@ import iut.sae.saeconnectback.entities.Group;
 import iut.sae.saeconnectback.entities.Role;
 import iut.sae.saeconnectback.entities.User;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
 public class UserMapper {
+
+    @Value("${jwt.expiration.time}")
+    private static int expirationToken;
+
     public static UserDTO toDto(User user){
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
@@ -62,7 +67,7 @@ public class UserMapper {
         authLoginResponseDTO.setRoleId(user.getRole().getId());
         authLoginResponseDTO.setFirstname(user.getFirstname());
         authLoginResponseDTO.setLastname(user.getLastname());
-        authLoginResponseDTO.setExpires_in(3600000);
+        authLoginResponseDTO.setExpires_in(expirationToken);
         return authLoginResponseDTO;
     }
 }
