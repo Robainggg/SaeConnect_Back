@@ -8,4 +8,5 @@ public class AuthLoginResponseDTO {
     private Long roleId;
     private String firstname;
     private String lastname;
+    private int expires_in;
 }

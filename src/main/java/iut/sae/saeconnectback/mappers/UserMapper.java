@@ -62,6 +62,7 @@ public class UserMapper {
         authLoginResponseDTO.setRoleId(user.getRole().getId());
         authLoginResponseDTO.setFirstname(user.getFirstname());
         authLoginResponseDTO.setLastname(user.getLastname());
+        authLoginResponseDTO.setExpires_in(3600000);
         return authLoginResponseDTO;
     }
 }
