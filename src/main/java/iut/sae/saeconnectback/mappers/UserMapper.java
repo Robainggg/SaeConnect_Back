@@ -61,6 +61,8 @@ public class UserMapper {
     public static AuthLoginResponseDTO toDTO(User user, String token, int expirationToken){
         AuthLoginResponseDTO authLoginResponseDTO = new AuthLoginResponseDTO();
         authLoginResponseDTO.setToken(token);
+        authLoginResponseDTO.setUserId(user.getId());
+        authLoginResponseDTO.setAlias(user.getAlias());
         authLoginResponseDTO.setRoleId(user.getRole().getId());
         authLoginResponseDTO.setFirstname(user.getFirstname());
         authLoginResponseDTO.setLastname(user.getLastname());
