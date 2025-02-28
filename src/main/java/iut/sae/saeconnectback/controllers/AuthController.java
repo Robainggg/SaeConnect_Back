@@ -10,6 +10,7 @@ import iut.sae.saeconnectback.repositories.UserRepository;
 import iut.sae.saeconnectback.services.RoleService;
 import iut.sae.saeconnectback.utils.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,6 +32,9 @@ public class AuthController {
     private final RoleService roleService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+
+    @Value("${jwt.expiration.time}")
+    private int expirationTime;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody AuthRegisterRequestDTO requestDTO) {
@@ -58,7 +62,7 @@ public class AuthController {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDto.getAlias(), userDto.getPassword()));
             String token = JwtTokenUtil.generateToken(userDto.getAlias());
             User user = userRepository.findByAlias(userDto.getAlias()).orElse(null);
-            AuthLoginResponseDTO response = UserMapper.toDTO(user, token);
+            AuthLoginResponseDTO response = UserMapper.toDTO(user, token, expirationTime);
             return ResponseEntity.ok(response);
         } catch(Exception ex) {
             ex.printStackTrace();

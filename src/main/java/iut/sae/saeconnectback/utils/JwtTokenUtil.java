@@ -14,7 +14,6 @@ public class JwtTokenUtil {
 
     private static String SECRET_KEY;
 
-    @Value("${jwt.expiration.time}")
     private static int expirationToken;
 
     private static SecretKey KEY;
@@ -23,6 +22,11 @@ public class JwtTokenUtil {
     public void setSecret(String secret) {
         SECRET_KEY = secret;
         KEY = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+    }
+
+    @Value("${jwt.expiration.time}")
+    public void setExpiration(int expiration) {
+        expirationToken = expiration;
     }
 
 

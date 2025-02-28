@@ -16,9 +16,6 @@ import java.util.stream.Collectors;
 @Slf4j
 public class UserMapper {
 
-    @Value("${jwt.expiration.time}")
-    private static int expirationToken;
-
     public static UserDTO toDto(User user){
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
@@ -61,7 +58,7 @@ public class UserMapper {
         return user;
     }
 
-    public static AuthLoginResponseDTO toDTO(User user, String token){
+    public static AuthLoginResponseDTO toDTO(User user, String token, int expirationToken){
         AuthLoginResponseDTO authLoginResponseDTO = new AuthLoginResponseDTO();
         authLoginResponseDTO.setToken(token);
         authLoginResponseDTO.setRoleId(user.getRole().getId());
