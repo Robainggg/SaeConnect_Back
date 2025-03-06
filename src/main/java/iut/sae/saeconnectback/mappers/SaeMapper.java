@@ -1,11 +1,11 @@
 package iut.sae.saeconnectback.mappers;
 
-import iut.sae.saeconnectback.dtos.SaeDTO;
+import iut.sae.saeconnectback.dtos.CreateSaeDTO;
 import iut.sae.saeconnectback.entities.Sae;
 
 public class SaeMapper {
-    public static SaeDTO toDto(Sae sae) {
-        SaeDTO dto = new SaeDTO();
+    public static CreateSaeDTO toDto(Sae sae) {
+        CreateSaeDTO dto = new CreateSaeDTO();
         dto.setId(sae.getId());
         dto.setSujet(sae.getSujet());
         dto.setNom(sae.getNom());
@@ -14,7 +14,7 @@ public class SaeMapper {
         return dto;
     }
 
-    public static Sae toEntity(SaeDTO dto) {
+    public static Sae toEntity(CreateSaeDTO dto) {
         Sae sae = new Sae();
         sae.setId(dto.getId());
         sae.setSujet(dto.getSujet());

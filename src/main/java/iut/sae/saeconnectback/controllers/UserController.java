@@ -27,6 +27,11 @@ public UserController(UserService userService){this.userService = userService;}
         return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.noContent().build());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> userById(@PathVariable Long id){
+    Optional<User> user = userService.getUserById(id);
+    return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.noContent().build());
+    }
 
     @GetMapping
     public ResponseEntity<?> allUsers(){

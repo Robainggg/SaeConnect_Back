@@ -1,12 +1,13 @@
 package iut.sae.saeconnectback.services;
 
-import iut.sae.saeconnectback.dtos.SaeDTO;
+import iut.sae.saeconnectback.dtos.CreateSaeDTO;
 import iut.sae.saeconnectback.entities.Sae;
 import iut.sae.saeconnectback.mappers.SaeMapper;
 import iut.sae.saeconnectback.repositories.SaeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SaeService {
@@ -14,13 +15,18 @@ public class SaeService {
 
     public SaeService(SaeRepository saeRepository) {this.saeRepository = saeRepository;}
 
-    public List<SaeDTO> getAllSaes() {
+    public List<CreateSaeDTO> getAllSaes() {
         List<Sae> saes = saeRepository.findAll();
         return saes.stream().map(SaeMapper::toDto).toList();
     }
 
-    public void save(SaeDTO saeDTO) {
-        Sae sae = SaeMapper.toEntity(saeDTO);
+    public CreateSaeDTO getSaeById(Long id) {
+        Optional<Sae> sae =  saeRepository.findById(id);
+        return sae.map(SaeMapper::toDto).orElse(null);
+    }
+
+    public void save(CreateSaeDTO createSaeDTO) {
+        Sae sae = SaeMapper.toEntity(createSaeDTO);
         saeRepository.save(sae);
     }
 }

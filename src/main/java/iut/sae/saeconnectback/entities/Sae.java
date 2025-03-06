@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "saes")
@@ -27,5 +29,6 @@ public class Sae {
 
     @JsonProperty(value = "semestre_id")
     private Long semestreId;
+
 
 }
